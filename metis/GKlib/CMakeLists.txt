@@ -1,16 +1,13 @@
 cmake_minimum_required(VERSION 2.8)
 project(GKlib)
 
-get_filename_component(abs "." ABSOLUTE)
-set(GKLIB_PATH ${abs})
-unset(abs)
-include(GKlibSystem.cmake)
+include(./GKlibSystem.cmake)
 
-include_directories(.)
-add_library(GKlib STATIC ${GKlib_sources})
+add_library(gklib STATIC ${GKlib_sources})
+target_include_directories(gklib PUBLIC .)
 if(UNIX)
-  target_link_libraries(GKlib m)
+  target_link_libraries(gklib m)
 endif(UNIX)
 
-#include_directories("test")
-#add_subdirectory("test")
+include_directories("test")
+add_subdirectory("test")

@@ -1,5 +1,5 @@
 # Where the header files reside
-#include_directories(../)
+include_directories(../)
 
 # Build program.
 add_executable(strings strings.c)
@@ -8,6 +8,9 @@ add_executable(fis fis.c)
 add_executable(rw rw.c)
 add_executable(gkgraph gkgraph.c)
 foreach(prog strings gksort fis rw gkgraph)
-  target_link_libraries(${prog} GKlib)
+  target_link_libraries(${prog} gklib)
 endforeach(prog)
 
+enable_testing()
+add_test(sorting gksort)
+add_test(strings strings)

@@ -14,4 +14,4 @@ message(STATUS "INCLUDE_DIRECTORIES of parmetis: ${outvar}")
 target_link_libraries(parmetis metis ${MPI_C_LIBRARIES} ${MPI_Fortran_LIBRARIES})
 #set_target_properties(parmetis PROPERTIES LINK_FLAGS "${MPI_LINK_FLAGS}")
 
-export(TARGETS parmetis FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/parmetis-config.cmake)
+export(TARGETS parmetis metis FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/parmetis-config.cmake)
