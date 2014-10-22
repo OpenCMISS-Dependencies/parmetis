@@ -10,6 +10,6 @@ add_executable(graphchk graphchk.c io.c)
 add_executable(cmpfillin cmpfillin.c io.c smbfactor.c)
 
 foreach(prog gpmetis ndmetis mpmetis m2gmetis graphchk cmpfillin)
-    target_link_libraries(${prog} metis)
+    target_link_libraries(${prog} metis5)
 endforeach()
 add_definitions(-DSVNINFO="")
