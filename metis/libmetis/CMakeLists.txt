@@ -1,19 +1,20 @@
+cmake_minimum_required (VERSION 3.0)
+PROJECT(METIS VERSION 5.0 LANGUAGES C)
 # Find sources.
 file(GLOB metis_sources *.c)
 
 # Build libmetis.
-SET(METIS_VERSION 5.0)
-add_library(metis5 STATIC ${metis_sources})
-set_target_properties(metis5 PROPERTIES OUTPUT_NAME metis-${METIS_VERSION})
-target_include_directories(metis5 PRIVATE ../GKlib .)
-target_include_directories(metis5 PUBLIC ../include)
-target_link_libraries(metis5 PUBLIC gklib)
+add_library(metis STATIC ${metis_sources})
+set_target_properties(metis PROPERTIES OUTPUT_NAME metis-${METIS_VERSION})
+target_include_directories(metis PRIVATE ../GKlib)
+target_include_directories(metis PUBLIC . ../include)
+target_link_libraries(metis PUBLIC gklib)
 
 if(UNIX)
-  target_link_libraries(metis5 PUBLIC m)
+  target_link_libraries(metis PUBLIC m)
 endif()
 
-export(TARGETS metis5 gklib FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/metis-${METIS_VERSION}/metis5-config.cmake)
+export(TARGETS metis gklib FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/metis-${METIS_VERSION}/metis-config.cmake)
 include(CMakePackageConfigHelpers)
-WRITE_BASIC_PACKAGE_VERSION_FILE(${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/metis-${METIS_VERSION}/metis5-config-version.cmake
+WRITE_BASIC_PACKAGE_VERSION_FILE(${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/metis-${METIS_VERSION}/metis-config-version.cmake
     VERSION 5.0 COMPATIBILITY AnyNewerVersion)
