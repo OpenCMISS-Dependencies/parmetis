@@ -8,8 +8,12 @@ target_include_directories(parmetis PRIVATE ../metis/GKlib ${MPI_C_INCLUDE_PATH}
 target_include_directories(parmetis PUBLIC ../include .) 
 
 # Link with metis and MPI libraries.
-target_link_libraries(parmetis metis ${MPI_C_LIBRARIES} ${MPI_Fortran_LIBRARIES})
+target_link_libraries(parmetis
+    PUBLIC metis
+    PRIVATE ${MPI_C_LIBRARIES} ${MPI_Fortran_LIBRARIES})
 #set_target_properties(parmetis PROPERTIES LINK_FLAGS "${MPI_LINK_FLAGS}")
 
-export(TARGETS parmetis metis gklib FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/parmetis-config.cmake)
-#export(TARGETS parmetis FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/parmetis-config.cmake)
+export(TARGETS parmetis metis gklib FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/parmetis-${PARMETIS_VERSION}/parmetis-config.cmake)
+include(CMakePackageConfigHelpers)
+WRITE_BASIC_PACKAGE_VERSION_FILE(${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/parmetis-${PARMETIS_VERSION}/parmetis-config-version.cmake
+    VERSION ${PARMETIS_VERSION} COMPATIBILITY AnyNewerVersion)

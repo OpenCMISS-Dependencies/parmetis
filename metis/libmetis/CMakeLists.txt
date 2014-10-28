@@ -17,4 +17,4 @@ endif()
 export(TARGETS metis gklib FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/metis-${METIS_VERSION}/metis-config.cmake)
 include(CMakePackageConfigHelpers)
 WRITE_BASIC_PACKAGE_VERSION_FILE(${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/metis-${METIS_VERSION}/metis-config-version.cmake
-    VERSION 5.0 COMPATIBILITY AnyNewerVersion)
+    VERSION ${METIS_VERSION} COMPATIBILITY AnyNewerVersion)
