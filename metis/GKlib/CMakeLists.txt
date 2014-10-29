@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 2.8)
-project(GKlib)
+cmake_minimum_required(VERSION 3.0)
+project(GKlib VERSION 1 LANGUAGES C)
 
 include(./GKlibSystem.cmake)
 
@@ -9,5 +9,5 @@ if(UNIX)
   target_link_libraries(gklib m)
 endif(UNIX)
 
-include_directories("test")
-add_subdirectory("test")
+include_directories(test)
+add_subdirectory(test)

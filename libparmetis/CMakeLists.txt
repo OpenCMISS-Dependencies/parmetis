@@ -5,7 +5,8 @@ file(GLOB parmetis_sources *.c)
 add_library(parmetis STATIC ${parmetis_sources})
 target_include_directories(parmetis PRIVATE ../metis/GKlib ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH})
 #$<TARGET_PROPERTY:mpi,INTERFACE_INCLUDE_DIRECTORIES>
-target_include_directories(parmetis PUBLIC ../include .) 
+target_include_directories(parmetis PUBLIC ../include .)
+target_compile_definitions(parmetis PRIVATE OPENMP)
 
 # Link with metis and MPI libraries.
 target_link_libraries(parmetis
