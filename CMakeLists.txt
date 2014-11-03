@@ -1,26 +1,22 @@
 cmake_minimum_required(VERSION 3.0)
-project(ParMETIS VERSION 3.0 LANGUAGES C)
+project(PARMETIS VERSION 3.0 LANGUAGES C)
 
-if (OPENCMISS_DEPENDENCIES_LIBRARIES)
-    SET(CMAKE_PREFIX_PATH ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR} ${CMAKE_PREFIX_PATH})
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OPENCMISS_DEPENDENCIES_LIBRARIES})
-else()
-    SET(CMAKE_PREFIX_PATH ../cmake ${CMAKE_PREFIX_PATH})
-    SET(OPENCMISS_DEPENDENCIES_CONFIGS_DIR ${CMAKE_CURRENT_BINARY_DIR})
-    SET(BUILD_TESTING ON)
-endif()
+option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
 
 find_package(MPI REQUIRED)
-SET(GKLIB_PATH ${ParMETIS_SOURCE_DIR}/metis/GKlib)
-#include(${GKLIB_PATH}/GKlibSystem.cmake)
+SET(GKLIB_PATH ${PARMETIS_SOURCE_DIR}/metis/GKlib)
+# Hotfix: parmetis wont build with optimization flags on
+add_definitions(-O0)
 
 # List of directories that cmake will look for CMakeLists.txt
 add_subdirectory(metis/GKlib)
 add_subdirectory(metis/libmetis)
 add_subdirectory(libparmetis)
 
+install(FILES include/parmetis.h DESTINATION include)
+
 # testing / programs
-if (BUILD_TESTING)
+if (BUILD_TESTS)
     add_subdirectory(metis/programs)
     add_subdirectory(programs)
 endif()

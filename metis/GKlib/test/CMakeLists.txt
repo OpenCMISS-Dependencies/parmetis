@@ -8,7 +8,7 @@ add_executable(fis fis.c)
 add_executable(rw rw.c)
 add_executable(gkgraph gkgraph.c)
 foreach(prog strings gksort fis rw gkgraph)
-  target_link_libraries(${prog} gklib)
+  target_link_libraries(${prog} metis)
 endforeach(prog)
 
 enable_testing()
