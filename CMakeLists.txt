@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(PARMETIS VERSION 3.0 LANGUAGES C)
+project(PARMETIS VERSION 4.0.3 LANGUAGES C)
 
 option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
 
@@ -13,7 +13,7 @@ add_subdirectory(metis/GKlib)
 add_subdirectory(metis/libmetis)
 add_subdirectory(libparmetis)
 
-install(FILES include/parmetis.h DESTINATION include)
+install(FILES include/parmetis.h DESTINATION include/parmetis-${PARMETIS_VERSION})
 
 # testing / programs
 if (BUILD_TESTS)

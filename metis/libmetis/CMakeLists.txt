@@ -18,9 +18,13 @@ if(UNIX)
 endif()
 
 install(TARGETS metis EXPORT metis-config
-    DESTINATION lib/metis-${METIS_VERSION}
+    DESTINATION lib
     INCLUDES DESTINATION include/metis-${METIS_VERSION})
-install(FILES ../include/metis.h DESTINATION include/metis-${METIS_VERSION})
+install(TARGETS metis EXPORT parmetis-config
+    DESTINATION lib
+    INCLUDES DESTINATION include/metis-${METIS_VERSION})
+file(GLOB headers "*.h")
+install(FILES ${headers} ../include/metis.h DESTINATION include/metis-${METIS_VERSION})
 install(EXPORT metis-config DESTINATION lib/cmake/metis-${METIS_VERSION})
 include(CMakePackageConfigHelpers)
 WRITE_BASIC_PACKAGE_VERSION_FILE(${CMAKE_CURRENT_BINARY_DIR}/metis-config-version.cmake COMPATIBILITY AnyNewerVersion)
