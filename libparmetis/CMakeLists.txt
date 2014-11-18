@@ -20,8 +20,8 @@ target_link_libraries(parmetis
 install(TARGETS parmetis EXPORT parmetis-config
     DESTINATION lib
     INCLUDES DESTINATION include/parmetis-${PARMETIS_VERSION})
-install(EXPORT parmetis-config DESTINATION lib/cmake/parmetis-${PARMETIS_VERSION})
+install(EXPORT parmetis-config DESTINATION lib/cmake)
 include(CMakePackageConfigHelpers)
 WRITE_BASIC_PACKAGE_VERSION_FILE(${CMAKE_CURRENT_BINARY_DIR}/parmetis-config-version.cmake COMPATIBILITY AnyNewerVersion)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/parmetis-config-version.cmake 
-    DESTINATION lib/cmake/parmetis-${PARMETIS_VERSION})
+    DESTINATION lib/cmake)
