@@ -2,7 +2,7 @@
 file(GLOB parmetis_sources *.c)
 
 # Create libparmetis
-add_library(parmetis STATIC ${parmetis_sources})
+add_library(parmetis ${parmetis_sources})
 set_target_properties(parmetis PROPERTIES OUTPUT_NAME parmetis-${PARMETIS_VERSION})
 target_include_directories(parmetis PRIVATE ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH})
 target_include_directories(parmetis PUBLIC

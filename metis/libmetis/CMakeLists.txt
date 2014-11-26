@@ -4,7 +4,7 @@ PROJECT(METIS VERSION 5.1 LANGUAGES C)
 file(GLOB metis_sources *.c)
 
 # Build libmetis.
-add_library(metis STATIC ${metis_sources} $<TARGET_OBJECTS:gklib>)
+add_library(metis ${metis_sources} $<TARGET_OBJECTS:gklib>)
 set_target_properties(metis PROPERTIES OUTPUT_NAME metis-${METIS_VERSION})
 target_compile_definitions(metis PRIVATE OPENMP)
 target_include_directories(metis PRIVATE ../GKlib)
