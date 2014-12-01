@@ -9,7 +9,9 @@ target_include_directories(parmetis PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../metis/GKlib>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
-target_compile_definitions(parmetis PRIVATE OPENMP)
+if (WITH_OPENMP)
+    target_compile_definitions(parmetis PRIVATE OPENMP)
+endif()
 
 # Link with metis and MPI libraries.
 target_link_libraries(parmetis

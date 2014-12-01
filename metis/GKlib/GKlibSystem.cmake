@@ -8,7 +8,7 @@ option(ASSERT "turn asserts on" OFF)
 option(ASSERT2 "additional assertions" OFF)
 option(DEBUG "add debugging support" OFF)
 option(GPROF "add gprof support" OFF)
-option(OPENMP "enable OpenMP support" ON)
+option(WITH_OPENMP "enable OpenMP support" ON)
 option(PCRE "enable PCRE support" OFF)
 option(GKREGEX "enable GKREGEX support" OFF)
 option(GKRAND "enable GKRAND support" OFF)
@@ -40,22 +40,20 @@ elseif(${CMAKE_C_COMPILER_ID} MATCHES "Sun")
 endif(CMAKE_COMPILER_IS_GNUCC)
 
 # Find OpenMP if it is requested.
-if(OPENMP)
-  include(FindOpenMP)
+if(WITH_OPENMP)
+  find_package(OpenMP)
   if(OPENMP_FOUND)
     set(GKlib_COPTIONS "${GKlib_COPTIONS} -D__OPENMP__ ${OpenMP_C_FLAGS}")
   else()
     message(WARNING "OpenMP was requested but support was not found")
-  endif(OPENMP_FOUND)
-endif(OPENMP)
-
+  endif()
+endif()
 
 # Add various definitions.
 if(GDB)
   set(GKlib_COPTS "${GKlib_COPTS} -g")
   set(GKlib_COPTIONS "${GKlib_COPTIONS} -Werror")
 endif(GDB)
-
 
 if(DEBUG)
   set(GKlib_COPTS "-g")
