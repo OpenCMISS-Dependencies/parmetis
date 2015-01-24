@@ -10,6 +10,12 @@ find_package(MPI REQUIRED)
 SET(GKLIB_PATH ${PARMETIS_SOURCE_DIR}/metis/GKlib)
 # Hotfix: parmetis wont build with optimization flags on
 add_definitions(-O0)
+# On MinGW there is no regex.h, so use gklib variant.
+# This is correctly set in the GKLib CMakeLists, but not propagated to libmetis
+# Also adding __MINGW__ definition for some code changes (gk_getopt.h && gk_arch.h)
+if(MINGW)
+    add_definitions(-DUSE_GKREGEX -D__MINGW__)
+endif()
 
 # List of directories that cmake will look for CMakeLists.txt
 add_subdirectory(metis/GKlib)
