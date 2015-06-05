@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(PARMETIS VERSION 4.0.3 LANGUAGES C)
+# Set inner METIS version here so it can be used everywhere in the cmake script 
+set(METIS_VERSION_GLOBAL 5.1)
 
 option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
 option(PACKAGE_CONFIG_DIR "Directory for package config files (relative to CMAKE_INSTALL_PREFIX)" "lib/cmake")

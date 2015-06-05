@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.0)
-PROJECT(METIS VERSION 5.1 LANGUAGES C)
+PROJECT(METIS VERSION ${METIS_VERSION_GLOBAL} LANGUAGES C)
 # Find sources.
 file(GLOB metis_sources *.c)
 
@@ -22,13 +22,19 @@ endif()
 install(TARGETS metis EXPORT metis-config
     DESTINATION lib
     INCLUDES DESTINATION include/metis-${METIS_VERSION})
-install(TARGETS metis EXPORT parmetis-config
-    DESTINATION lib
-    INCLUDES DESTINATION include/metis-${METIS_VERSION})
 file(GLOB headers "*.h")
 install(FILES ${headers} ../include/metis.h DESTINATION include/metis-${METIS_VERSION})
 install(EXPORT metis-config DESTINATION ${PACKAGE_CONFIG_DIR})
 include(CMakePackageConfigHelpers)
 WRITE_BASIC_PACKAGE_VERSION_FILE(${CMAKE_CURRENT_BINARY_DIR}/metis-config-version.cmake COMPATIBILITY AnyNewerVersion)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/metis-config-version.cmake
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/metis-config-dependencies.cmake 
+    "include(CMakeFindDependencyMacro)\r\n"
+    "set(_OLD_IMPORT_PREFIX \${_IMPORT_PREFIX})\r\n")
+if (WITH_OPENMP)
+    file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/metis-config-dependencies.cmake "find_package(OpenMP)\r\n")
+endif() 
+file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/metis-config-dependencies.cmake "set(_IMPORT_PREFIX \${_OLD_IMPORT_PREFIX})")
+install(FILES 
+    ${CMAKE_CURRENT_BINARY_DIR}/metis-config-version.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/metis-config-dependencies.cmake
     DESTINATION ${PACKAGE_CONFIG_DIR})
