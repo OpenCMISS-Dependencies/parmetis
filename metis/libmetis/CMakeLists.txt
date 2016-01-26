@@ -4,12 +4,12 @@ PROJECT(METIS VERSION ${METIS_VERSION_GLOBAL} LANGUAGES C)
 file(GLOB metis_sources *.c)
 
 # Build libmetis.
-add_library(metis ${metis_sources} $<TARGET_OBJECTS:gklib>)
+add_library(metis ${metis_sources})
 set_target_properties(metis PROPERTIES OUTPUT_NAME metis-${METIS_VERSION})
 if (WITH_OPENMP)
     target_compile_definitions(metis PRIVATE OPENMP)
 endif()
-target_include_directories(metis PRIVATE ../GKlib)
+target_link_libraries(metis PUBLIC $<BUILD_INTERFACE:gklib>)
 target_include_directories(metis PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
