@@ -9,7 +9,7 @@ set_target_properties(metis PROPERTIES OUTPUT_NAME metis-${METIS_VERSION})
 if (WITH_OPENMP)
     target_compile_definitions(metis PRIVATE OPENMP)
 endif()
-target_link_libraries(metis PUBLIC $<BUILD_INTERFACE:gklib>)
+target_link_libraries(metis PUBLIC gklib)
 target_include_directories(metis PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>

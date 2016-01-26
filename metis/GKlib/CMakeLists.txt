@@ -116,5 +116,9 @@ target_compile_definitions(gklib PUBLIC $<BUILD_INTERFACE:${GKlib_DEFS}>)
 target_compile_options(gklib PUBLIC $<BUILD_INTERFACE:${GKlib_COPTIONS}>)
 target_include_directories(gklib PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 
+install(TARGETS gklib EXPORT metis-config
+    DESTINATION lib
+) #INCLUDES DESTINATION include/metis-${METIS_VERSION}
+
 include_directories(test)
 add_subdirectory(test)
