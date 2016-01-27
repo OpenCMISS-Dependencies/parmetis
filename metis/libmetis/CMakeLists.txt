@@ -21,9 +21,8 @@ endif()
 
 install(TARGETS metis EXPORT metis-config
     DESTINATION lib
-    INCLUDES DESTINATION include/metis-${METIS_VERSION})
-file(GLOB headers "*.h")
-install(FILES ${headers} ../include/metis.h DESTINATION include/metis-${METIS_VERSION})
+    INCLUDES DESTINATION include)
+install(FILES ../include/metis.h DESTINATION include)
 install(EXPORT metis-config DESTINATION ${PACKAGE_CONFIG_DIR})
 include(CMakePackageConfigHelpers)
 WRITE_BASIC_PACKAGE_VERSION_FILE(${CMAKE_CURRENT_BINARY_DIR}/metis-config-version.cmake COMPATIBILITY AnyNewerVersion)

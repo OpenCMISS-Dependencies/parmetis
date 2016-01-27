@@ -118,7 +118,7 @@ target_include_directories(gklib PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE
 
 install(TARGETS gklib EXPORT metis-config
     DESTINATION lib
-) #INCLUDES DESTINATION include/metis-${METIS_VERSION}
+)
 
 include_directories(test)
 add_subdirectory(test)
