@@ -27,7 +27,7 @@
 
 #include <defs.h>
 #include <struct.h>
-#include <macros.h>
+#include <metis_macros.h>
 #include <proto.h>
 
 

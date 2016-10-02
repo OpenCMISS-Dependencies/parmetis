@@ -23,7 +23,7 @@
 #include "../libparmetis/rename.h"
 #include "../libparmetis/defs.h"
 #include "../libparmetis/struct.h"
-#include "../libparmetis/macros.h"
+#include "../libparmetis/parmetis_macros.h"
 #include "../libparmetis/proto.h"
 #include "proto.h"
 
