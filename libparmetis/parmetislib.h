@@ -27,6 +27,6 @@
 #include <rename.h>
 #include <defs.h>
 #include <struct.h>
-#include <macros.h>
+#include <parmetis_macros.h>
 #include <proto.h>
 
