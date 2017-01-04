@@ -1,10 +1,58 @@
 cmake_minimum_required (VERSION 3.0)
 PROJECT(METIS VERSION ${METIS_VERSION_GLOBAL} LANGUAGES C)
-# Find sources.
-file(GLOB metis_sources *.c)
+
+set(metis_sources
+    auxapi.c
+    balance.c
+    bucketsort.c
+    checkgraph.c
+    coarsen.c
+    compress.c
+    contig.c
+    debug.c
+    fm.c
+    fortran.c
+    frename.c
+    gklib.c
+    graph.c
+    initpart.c
+    kmetis.c
+    kwayfm.c
+    kwayrefine.c
+    mcutil.c
+    mesh.c
+    meshpart.c
+    minconn.c
+    mincover.c
+    mmd.c
+    ometis.c
+    options.c
+    parmetis.c
+    pmetis.c
+    refine.c
+    separator.c
+    sfm.c
+    srefine.c
+    stat.c
+    timing.c
+    util.c
+    wspace.c
+)
+
+set(metis_headers
+    defs.h
+    gklib_defs.h
+    gklib_rename.h
+    macros.h
+    metislib.h
+    proto.h
+    rename.h
+    stdheaders.h
+    struct.h
+)
 
 # Build libmetis.
-add_library(metis ${metis_sources})
+add_library(metis ${metis_sources} ${metis_headers})
 set_target_properties(metis PROPERTIES OUTPUT_NAME metis-${METIS_VERSION})
 if (WITH_OPENMP)
     target_compile_definitions(metis PRIVATE OPENMP)
