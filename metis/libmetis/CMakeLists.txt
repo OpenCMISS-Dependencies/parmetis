@@ -43,7 +43,7 @@ set(metis_headers
     defs.h
     gklib_defs.h
     gklib_rename.h
-    macros.h
+    metis_macros.h
     metislib.h
     proto.h
     rename.h
