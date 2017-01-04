@@ -32,7 +32,7 @@
 #include "../libmetis/gklib_defs.h"
 #include "../libmetis/defs.h"
 #include "../libmetis/struct.h"
-#include "../libmetis/macros.h"
+#include "../libmetis/metis_macros.h"
 #include "../libmetis/proto.h"
 #include "defs.h"
 #include "struct.h"
