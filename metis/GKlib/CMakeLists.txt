@@ -39,7 +39,9 @@ endif()
 if(WITH_OPENMP)
   find_package(OpenMP)
   if(OPENMP_FOUND)
-    set(GKlib_COPTIONS "${GKlib_COPTIONS} -D__OPENMP__ ${OpenMP_C_FLAGS}")
+    list(APPEND GKlib_COPTIONS ${OpenMP_C_FLAGS})
+    list(APPEND GKlib_DEFS __OPENMP__)
+    list(APPEND GKlib_LIBS ${OpenMP_C_LIBRARIES})
   else()
     message(WARNING "OpenMP was requested but support was not found")
   endif()
@@ -48,7 +50,7 @@ endif()
 # Add various definitions.
 if(GDB)
   set(GKlib_COPTS "${GKlib_COPTS} -g")
-  set(GKlib_COPTIONS "${GKlib_COPTIONS} -Werror")
+  list(APPEND GKlib_COPTIONS -Werror)
 endif(GDB)
 
 if(GPROF)
@@ -115,6 +117,7 @@ add_library(gklib ${GKlib_sources})
 target_compile_definitions(gklib PUBLIC $<BUILD_INTERFACE:${GKlib_DEFS}>)
 target_compile_options(gklib PUBLIC $<BUILD_INTERFACE:${GKlib_COPTIONS}>)
 target_include_directories(gklib PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+target_link_libraries(gklib PUBLIC ${GKlib_LIBS})
 
 install(TARGETS gklib EXPORT metis-config
     DESTINATION lib
