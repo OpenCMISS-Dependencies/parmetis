@@ -4,7 +4,8 @@ project(PARMETIS VERSION 4.0.3 LANGUAGES C)
 set(METIS_VERSION_GLOBAL 5.1)
 
 option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
-option(PACKAGE_CONFIG_DIR "Directory for package config files (relative to CMAKE_INSTALL_PREFIX)" "lib/cmake")
+set(PACKAGE_CONFIG_DIR "lib/cmake" CACHE STRING "Directory for package config files (relative to CMAKE_INSTALL_PREFIX)")
+
 # Flag passed in to control use of openmp.
 # Changed ENABLE_OPENMP in metislib.h and metisbin.h to _OPENMP to have standard compliant procedure
 option(WITH_OPENMP "${PROJECT_NAME} - Use OpenMP" ON)
